@@ -7,8 +7,8 @@ pre_tasks:
       module: ec2_elb
       region: "{{ ansible_ec2_region }}"
       instance_id: "{{ ansible_ec2_instance_id }}"
-      aws_access_key: ""
-      aws_secret_key: ""
+      # aws_access_key: "" configure in environment
+      # aws_secret_key: "" configure in environment
       state: absent
 
 post_tasks:
@@ -18,6 +18,6 @@ post_tasks:
       region: "{{ ansible_ec2_region }}"
       instance_id: "{{ ansible_ec2_instance_id }}"
       ec2_elbs: ["{{ elb_name }}"]
-      aws_access_key: ""
-      aws_secret_key: ""
+      # aws_access_key: "" configure in environment
+      # aws_secret_key: "" configure in environment
       state: present
