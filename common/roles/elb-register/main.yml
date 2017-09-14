@@ -1,0 +1,23 @@
+# De-registers or registers instances from EC2 ELBs
+
+---
+pre_tasks:
+  - name: Instance De-register
+    local_action:
+      module: ec2_elb
+      region: "{{ ansible_ec2_region }}"
+      instance_id: "{{ ansible_ec2_instance_id }}"
+      aws_access_key: ""
+      aws_secret_key: ""
+      state: absent
+
+post_tasks:
+  - name: Instance Register
+    local_action:
+      module: ec2_elb
+      region: "{{ ansible_ec2_region }}"
+      instance_id: "{{ ansible_ec2_instance_id }}"
+      ec2_elbs: ["{{ elb_name }}"]
+      aws_access_key: ""
+      aws_secret_key: ""
+      state: present
